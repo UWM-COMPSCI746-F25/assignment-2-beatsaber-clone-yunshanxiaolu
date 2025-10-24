@@ -3,3 +3,10 @@
 
 # Android
 android/
+android/
+addons/
+*.apk
+*.import
+*.tmp
+*.log
+

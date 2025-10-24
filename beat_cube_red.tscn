@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://buuw2ikkwqkxs"]
+
+[ext_resource type="Script" uid="uid://cqpj0mxgiodoc" path="res://beat_cube_basic.gd" id="1_wkc0l"]
+[ext_resource type="AudioStream" uid="uid://c6e6l5gqvwjud" path="res://sound.wav" id="2_ms818"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_frlim"]
+size = Vector3(0.35, 0.35, 0.35)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6t8f"]
+albedo_color = Color(1, 0.262745, 0.141176, 1)
+emission_enabled = true
+emission = Color(0.901961, 0, 0, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_4k6cs"]
+material = SubResource("StandardMaterial3D_g6t8f")
+size = Vector3(0.35, 0.35, 0.35)
+
+[node name="BeatCubeRed" type="Area3D"]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_wkc0l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_frlim")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_4k6cs")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_ms818")
+volume_db = 3.0
+max_distance = 30.0

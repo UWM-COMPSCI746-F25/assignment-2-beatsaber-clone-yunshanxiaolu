@@ -9,11 +9,14 @@ In this assignment, you will be implementing Beat Saber's core mechanics. You ca
 
 You should fill out this information before submitting your assignment.  Make sure to document the name and source of any third party assets such as 3D models, textures, or any other content used that was not solely written by you.  Include sufficient detail for the instructor or TA to easily find them, such as a download link.
 
-Name: 
+Name: Xiaoying Zhu
 
-UWM Email:
+UWM Email:zhu42@uwm.edu
 
 Third Party Assets:
+The collision sound effect file sound.wav was downloaded from freesound.org.
+The script xr_start.gd is based on example code provided in the official Godot XR tutorial.
+Some parts of the scripting and implementation were written with assistance from OpenAI ChatGPT.
 
 ## Getting Started
 
@@ -54,4 +57,3 @@ Please test that your submission meets these requirements.  For example, after y
 ## Acknowledgements
 
 This assignment is a modified version of an assignment from a class taught by Professor Evan Suma Rosenberg at the University of Minnesota.
-

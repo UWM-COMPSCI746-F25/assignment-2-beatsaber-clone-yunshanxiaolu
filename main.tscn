@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://bg77j6vxl5tcp"]
+
+[ext_resource type="PackedScene" uid="uid://bwqsxtu6jsqil" path="res://LaserSwordLeft.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://bojcf0v3gc6vw" path="res://main.gd" id="1_7mycd"]
+[ext_resource type="PackedScene" uid="uid://cxfrc0414bmii" path="res://cube_spawner_red.tscn" id="1_lquwl"]
+[ext_resource type="PackedScene" uid="uid://csiukwd5vqnjg" path="res://cube_spawner_blue.tscn" id="2_7mycd"]
+[ext_resource type="PackedScene" uid="uid://ctfegdeu64kv7" path="res://LaserSwordRight.tscn" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://nvw8d4inv0lt" path="res://xr_start.gd" id="3_h2yge"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7dm0k"]
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ig7tw"]
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
+albedo_color = Color(0.950311, 0.926257, 0.379643, 1)
+
+[sub_resource type="Environment" id="Environment_h2yge"]
+background_mode = 2
+
+[node name="Main_Node3D" type="Node3D"]
+script = ExtResource("1_7mycd")
+
+[node name="CubeSpawnerRed" parent="." instance=ExtResource("1_lquwl")]
+player_camera = NodePath("../XROrigin3D/XRCamera3D")
+
+[node name="CubeSpawnerBlue" parent="." instance=ExtResource("2_7mycd")]
+player_camera = NodePath("../XROrigin3D/XRCamera3D")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(0.999998, 0, 0.00207693, 0, 1, 0, -0.00207693, 0, 0.999998, -0.0219789, 0.711216, -0.0152124)
+
+[node name="XRController3D_Left" type="XRController3D" parent="XROrigin3D"]
+tracker = &"left_hand"
+
+[node name="LaserSword_Node3D" parent="XROrigin3D/XRController3D_Left" instance=ExtResource("1_0xm2m")]
+controller = NodePath("..")
+
+[node name="XRController3D_Right" type="XRController3D" parent="XROrigin3D"]
+tracker = &"right_hand"
+
+[node name="LaserSwordRight" parent="XROrigin3D/XRController3D_Right" instance=ExtResource("2_h2yge")]
+controller = NodePath("..")
+
+[node name="Floor_Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, -0.05)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor_Node3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor_Node3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_7dm0k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor_Node3D"]
+mesh = SubResource("BoxMesh_ig7tw")
+surface_material_override/0 = SubResource("StandardMaterial3D_0xm2m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.745232, 0.666806, 0, -0.654486, 0.731463, 0.19134, 0.127587, -0.142593, 0.981524, 0.0611207, 1.59333, 0.794447)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h2yge")
+
+[node name="XRStart" type="Node3D" parent="."]
+script = ExtResource("3_h2yge")
